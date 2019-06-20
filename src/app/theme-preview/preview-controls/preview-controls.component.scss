@@ -3,12 +3,12 @@ label {
   display: block;
 }
 
-label+h2 {
+label + h2 {
   margin-top: 1em;
 }
 
 mat-progress-bar {
-  margin: .5em 0;
+  margin: 0.5em 0;
 }
 
 h2 mat-radio-group {
@@ -17,4 +17,8 @@ h2 mat-radio-group {
   mat-radio-button {
     margin-right: 1em;
   }
+}
+
+mat-card {
+  margin-bottom: 1em;
 }

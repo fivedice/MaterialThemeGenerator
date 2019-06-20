@@ -1,16 +1,22 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>Material Theme Generator</title>
-    <base href="/">
-    <meta name="Description" content="Web-Based Material Theme Generator for @angular/material">
-    <meta name="theme-color" content="#12ae2f">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <base href="/" />
+    <meta
+      name="Description"
+      content="Web-Based Material Theme Generator for @angular/material"
+    />
+    <meta name="theme-color" content="#12ae2f" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <script src="assets/sass.sync.js"></script>
-    <link rel="icon" type="image/x-png" href="/assets/logo.png">
+    <link rel="icon" type="image/x-png" href="/assets/logo.png" />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
   </head>
 
   <body class="mat-typography">
@@ -18,18 +24,22 @@
   </body>
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-10064803-4"></script>
+  <script
+    async
+    src="https://www.googletagmanager.com/gtag/js?id=UA-10064803-4"
+  ></script>
   <script>
-    if (window.location.hostname !== 'localhost') {
+    if (window.location.hostname !== "localhost") {
       window.dataLayer = window.dataLayer || [];
-      function gtag() { dataLayer.push(arguments); }
-      gtag('js', new Date());
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
 
-      gtag('config', 'UA-10064803-4');
+      gtag("config", "UA-10064803-4");
     }
     if (window.parent !== window) {
-      document.body.classList.add('preview');
+      document.body.classList.add("preview");
     }
   </script>
-
 </html>
