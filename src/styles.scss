@@ -3,27 +3,26 @@
 * https://material-theme-generator.travetto.io
 */
 
-@import '~@angular/material/theming';
+@import "~@angular/material/theming";
 // Include the common styles for Angular Material. We include this here so that you only
 // have to load a single css file for Angular Material in your app.
 
-@import url('https://fonts.googleapis.com/css?family=Raleway:300,400,500');
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500');
+@import url("https://fonts.googleapis.com/css?family=Lato:300,400,500");
 
 $fontConfig: (
-  display-4: mat-typography-level(112px, 112px, 300, 'Raleway', -0.0134em),
-  display-3: mat-typography-level(56px, 56px, 400, 'Raleway', -0.0089em),
-  display-2: mat-typography-level(45px, 48px, 400, 'Raleway', 0.0000em),
-  display-1: mat-typography-level(34px, 40px, 400, 'Raleway', 0.0074em),
-  headline: mat-typography-level(24px, 32px, 400, 'Raleway', 0.0000em),
-  title: mat-typography-level(20px, 32px, 500, 'Raleway', 0.0075em),
-  subheading-2: mat-typography-level(16px, 28px, 400, 'Raleway', 0.0094em),
-  subheading-1: mat-typography-level(15px, 24px, 500, 'Raleway', 0.0067em),
-  body-2: mat-typography-level(14px, 24px, 500, 'Raleway', 0.0179em),
-  body-1: mat-typography-level(14px, 20px, 400, 'Raleway', 0.0179em),
-  button: mat-typography-level(14px, 14px, 500, 'Raleway', 0.0893em),
-  caption: mat-typography-level(12px, 20px, 400, 'Raleway', 0.0333em),
-  input: mat-typography-level(inherits, 1.125, 400, 'Raleway', 1.5px)
+  display-4: mat-typography-level(112px, 112px, 300, "Lato", -0.0134em),
+  display-3: mat-typography-level(56px, 56px, 400, "Lato", -0.0089em),
+  display-2: mat-typography-level(45px, 48px, 400, "Lato", 0em),
+  display-1: mat-typography-level(34px, 40px, 400, "Lato", 0.0074em),
+  headline: mat-typography-level(24px, 32px, 400, "Lato", 0em),
+  title: mat-typography-level(20px, 32px, 500, "Lato", 0.0075em),
+  subheading-2: mat-typography-level(16px, 28px, 400, "Lato", 0.0094em),
+  subheading-1: mat-typography-level(15px, 24px, 500, "Lato", 0.0067em),
+  body-2: mat-typography-level(14px, 24px, 500, "Lato", 0.0179em),
+  body-1: mat-typography-level(14px, 20px, 400, "Lato", 0.0179em),
+  button: mat-typography-level(14px, 14px, 500, "Lato", 0.0893em),
+  caption: mat-typography-level(12px, 20px, 400, "Lato", 0.0333em),
+  input: mat-typography-level(inherits, 1.125, 400, "Lato", 1.5px)
 );
 
 $light-text: #ffffff;
@@ -41,41 +40,41 @@ $dark-dividers: rgba($dark-primary-text, 0.12);
 $dark-focused: rgba($dark-primary-text, 0.12);
 
 $mat-light-theme-foreground: (
-  base:              black,
-  divider:           $dark-dividers,
-  dividers:          $dark-dividers,
-  disabled:          $dark-disabled-text,
-  disabled-button:   rgba($dark-text, 0.26),
-  disabled-text:     $dark-disabled-text,
-  elevation:         black,
-  secondary-text:    $dark-accent-text,
-  hint-text:         $dark-disabled-text,
-  accent-text:       $dark-accent-text,
-  icon:              $dark-accent-text,
-  icons:             $dark-accent-text,
-  text:              $dark-primary-text,
-  slider-min:        $dark-primary-text,
-  slider-off:        rgba($dark-text, 0.26),
-  slider-off-active: $dark-disabled-text,
+  base: black,
+  divider: $dark-dividers,
+  dividers: $dark-dividers,
+  disabled: $dark-disabled-text,
+  disabled-button: rgba($dark-text, 0.26),
+  disabled-text: $dark-disabled-text,
+  elevation: black,
+  secondary-text: $dark-accent-text,
+  hint-text: $dark-disabled-text,
+  accent-text: $dark-accent-text,
+  icon: $dark-accent-text,
+  icons: $dark-accent-text,
+  text: $dark-primary-text,
+  slider-min: $dark-primary-text,
+  slider-off: rgba($dark-text, 0.26),
+  slider-off-active: $dark-disabled-text
 );
 
 $mat-dark-theme-foreground: (
-  base:              $light-text,
-  divider:           $light-dividers,
-  dividers:          $light-dividers,
-  disabled:          $light-disabled-text,
-  disabled-button:   rgba($light-text, 0.3),
-  disabled-text:     $light-disabled-text,
-  elevation:         black,
-  hint-text:         $light-disabled-text,
-  secondary-text:    $light-accent-text,
-  accent-text:       $light-accent-text,
-  icon:              $light-text,
-  icons:             $light-text,
-  text:              $light-text,
-  slider-min:        $light-text,
-  slider-off:        rgba($light-text, 0.3),
-  slider-off-active: rgba($light-text, 0.3),
+  base: $light-text,
+  divider: $light-dividers,
+  dividers: $light-dividers,
+  disabled: $light-disabled-text,
+  disabled-button: rgba($light-text, 0.3),
+  disabled-text: $light-disabled-text,
+  elevation: black,
+  hint-text: $light-disabled-text,
+  secondary-text: $light-accent-text,
+  accent-text: $light-accent-text,
+  icon: $light-text,
+  icons: $light-text,
+  text: $light-text,
+  slider-min: $light-text,
+  slider-off: rgba($light-text, 0.3),
+  slider-off-active: rgba($light-text, 0.3)
 );
 
 @include mat-core($fontConfig);
@@ -98,7 +97,7 @@ $mat-primary: (
   A200: #aaff9a,
   A400: #7fff67,
   A700: #6aff4e,
-  contrast : (
+  contrast: (
     50: $dark-primary-text,
     100: $dark-primary-text,
     200: $dark-primary-text,
@@ -130,7 +129,7 @@ $mat-accent: (
   A200: #23ffad,
   A400: #00ef92,
   A700: #00d682,
-  contrast : (
+  contrast: (
     50: $dark-primary-text,
     100: $dark-primary-text,
     200: $dark-primary-text,
@@ -162,7 +161,7 @@ $mat-warn: (
   A200: #ffffff,
   A400: #ffd2da,
   A700: #ffb9c4,
-  contrast : (
+  contrast: (
     50: $dark-primary-text,
     100: $dark-primary-text,
     200: $dark-primary-text,
@@ -206,35 +205,39 @@ body {
   height: 100vh;
 }
 
-h2,h3,h4 {
+h2,
+h3,
+h4 {
   a.help {
     span.mat-badge-content {
-      background:black;
-      opacity: .7;
+      background: black;
+      opacity: 0.7;
       color: white;
-      transition: all .15s ease-in-out;
+      transition: all 0.15s ease-in-out;
     }
     &:hover {
       span.mat-badge-content {
         background: darkgreen;
       }
     }
-  }  
+  }
 }
 
-mat-icon[svgicon="close"], mat-icon[svgicon="github"] {
+mat-icon[svgicon="close"],
+mat-icon[svgicon="github"] {
   color: white;
 }
 
-mat-dialog-container.mat-dialog-container, 
+mat-dialog-container.mat-dialog-container,
 mat-dialog-container [mat-dialog-content] {
   padding: 0;
   margin: 0;
 }
 
 .mat-simple-snackbar-action {
-  a, button {
-    color: white; 
+  a,
+  button {
+    color: white;
   }
 }
 

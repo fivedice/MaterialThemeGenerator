@@ -1,228 +1,189 @@
 <form [formGroup]="addressForm" novalidate>
-  <mat-card class="shipping-card">
-    <mat-card-title>Order Form</mat-card-title>
-    <mat-card-content>
-      <label
-        >Slider
-        <mat-slider formControlName="quantity" [min]="1" [max]="20"></mat-slider
-      ></label>
-      <label
-        >Checkbox <mat-checkbox formControlName="large"></mat-checkbox
-      ></label>
-      <label
-        >Options:
-        <mat-chip-list>
-          <mat-chip>Chip 1</mat-chip>
-          <mat-chip>Chip 2</mat-chip>
-          <mat-chip>Chip 3</mat-chip>
-        </mat-chip-list>
-      </label>
+	<mat-card class="shipping-card">
+		<mat-card-title>Order Form</mat-card-title>
+		<mat-card-content>
+			<label>Slider <mat-slider formControlName="quantity" [min]="1" [max]="20"></mat-slider></label>
+			<label>Checkbox <mat-checkbox formControlName="large"></mat-checkbox></label>
+			<label
+				>Options:
+				<mat-chip-list>
+					<mat-chip>Chip 1</mat-chip>
+					<mat-chip>Chip 2</mat-chip>
+					<mat-chip>Chip 3</mat-chip>
+				</mat-chip-list>
+			</label>
 
-      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+			<mat-progress-bar mode="indeterminate"></mat-progress-bar>
 
-      <h3>Ship To</h3>
-      <mat-form-field>
-        <input matInput placeholder="Name" formControlName="name" />
-        <mat-error *ngIf="addressForm.get('name').hasError('required')">
-          Name is <strong>required</strong>
-        </mat-error>
-      </mat-form-field>
-      <mat-form-field>
-        <textarea
-          matInput
-          placeholder="Address"
-          formControlName="address"
-        ></textarea>
-        <mat-error *ngIf="addressForm.get('address').hasError('required')">
-          Address is <strong>required</strong>
-        </mat-error>
-      </mat-form-field>
-      <mat-form-field>
-        <input matInput placeholder="City" formControlName="city" />
-        <mat-error *ngIf="addressForm.get('city').hasError('required')">
-          City is <strong>required</strong>
-        </mat-error>
-      </mat-form-field>
-      <mat-form-field>
-        <mat-select placeholder="State" formControlName="state">
-          <mat-option *ngFor="let state of states" [value]="state.abbreviation">
-            {{ state.name }}
-          </mat-option>
-        </mat-select>
-        <mat-error *ngIf="addressForm.get('state').hasError('required')">
-          State is <strong>required</strong>
-        </mat-error>
-      </mat-form-field>
-      <mat-form-field>
-        <input
-          matInput
-          #postalCode
-          maxlength="5"
-          placeholder="Postal Code"
-          type="number"
-          formControlName="postalCode"
-        />
-        <mat-hint align="end">{{ postalCode.value.length }} / 5</mat-hint>
-      </mat-form-field>
-      <h3>
-        Shipping Method
-        <mat-radio-group formControlName="shipping">
-          <mat-radio-button value="free">Free Shipping</mat-radio-button>
-          <mat-radio-button value="priority"
-            >Priority Shipping</mat-radio-button
-          >
-          <mat-radio-button value="nextday">Next Day Shipping</mat-radio-button>
-        </mat-radio-group>
-      </h3>
-      <h3>
-        Tracking?
-        <mat-slide-toggle formControlName="tracking"></mat-slide-toggle>
-      </h3>
-      <mat-form-field>
-        <input
-          matInput
-          formControlName="arrival"
-          [matDatepicker]="picker"
-          placeholder="Desired Arrival Date"
-        />
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
-      </mat-form-field>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-raised-button color="accent" type="submit">Submit</button>
-    </mat-card-actions>
-  </mat-card>
+			<h3>Ship To</h3>
+			<mat-form-field>
+				<input matInput placeholder="Name" formControlName="name" />
+				<mat-error *ngIf="addressForm.get('name').hasError('required')"> Name is <strong>required</strong> </mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<textarea matInput placeholder="Address" formControlName="address"></textarea>
+				<mat-error *ngIf="addressForm.get('address').hasError('required')">
+					Address is <strong>required</strong>
+				</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<input matInput placeholder="City" formControlName="city" />
+				<mat-error *ngIf="addressForm.get('city').hasError('required')"> City is <strong>required</strong> </mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<mat-select placeholder="State" formControlName="state">
+					<mat-option *ngFor="let state of states" [value]="state.abbreviation">
+						{{ state.name }}
+					</mat-option>
+				</mat-select>
+				<mat-error *ngIf="addressForm.get('state').hasError('required')">
+					State is <strong>required</strong>
+				</mat-error>
+			</mat-form-field>
+			<mat-form-field>
+				<input
+					matInput
+					#postalCode
+					maxlength="5"
+					placeholder="Postal Code"
+					type="number"
+					formControlName="postalCode"
+				/>
+				<mat-hint align="end">{{ postalCode.value.length }} / 5</mat-hint>
+			</mat-form-field>
+			<h3>
+				Shipping Method
+				<mat-radio-group formControlName="shipping">
+					<mat-radio-button value="free">Free Shipping</mat-radio-button>
+					<mat-radio-button value="priority">Priority Shipping</mat-radio-button>
+					<mat-radio-button value="nextday">Next Day Shipping</mat-radio-button>
+				</mat-radio-group>
+			</h3>
+			<h3>
+				Tracking?
+				<mat-slide-toggle formControlName="tracking"></mat-slide-toggle>
+			</h3>
+			<mat-form-field>
+				<input matInput formControlName="arrival" [matDatepicker]="picker" placeholder="Desired Arrival Date" />
+				<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+				<mat-datepicker #picker></mat-datepicker>
+			</mat-form-field>
+		</mat-card-content>
+		<mat-card-actions>
+			<button mat-raised-button type="submit">Submit</button>
+		</mat-card-actions>
+	</mat-card>
 
-  <mat-card>
-    <mat-card-title>
-      Basic Buttons
-    </mat-card-title>
-    <div class="example-button-row">
-      <button mat-button>Basic</button>
-      <button mat-button color="primary">Primary</button>
-      <button mat-button color="accent">Accent</button>
-      <button mat-button color="warn">Warn</button>
-      <button mat-button disabled>Disabled</button>
-      <a mat-button routerLink=".">Link</a>
-    </div>
-  </mat-card>
+	<mat-card>
+		<mat-card-title>
+			Basic Buttons
+		</mat-card-title>
+		<div class="example-button-row">
+			<button mat-button>Basic</button>
+			<button mat-button color="primary">Primary</button>
+			<button mat-button color="accent">Accent</button>
+			<button mat-button color="warn">Warn</button>
+			<button mat-button disabled>Disabled</button>
+			<a mat-button routerLink=".">Link</a>
+		</div>
+	</mat-card>
 
-  <mat-card>
-    <mat-card-title>
-      Raised Buttons
-    </mat-card-title>
-    <div class="example-button-row">
-      <button mat-raised-button>Basic</button>
-      <button mat-raised-button color="primary">Primary</button>
-      <button mat-raised-button color="accent">Accent</button>
-      <button mat-raised-button color="warn">Warn</button>
-      <button mat-raised-button disabled>Disabled</button>
-      <a mat-raised-button routerLink=".">Link</a>
-    </div>
-  </mat-card>
+	<mat-card>
+		<mat-card-title>
+			Raised Buttons
+		</mat-card-title>
+		<div class="example-button-row">
+			<button mat-raised-button>Basic</button>
+			<button mat-raised-button color="primary">Primary</button>
+			<button mat-raised-button color="accent">Accent</button>
+			<button mat-raised-button color="warn">Warn</button>
+			<button mat-raised-button disabled>Disabled</button>
+			<a mat-raised-button routerLink=".">Link</a>
+		</div>
+	</mat-card>
 
-  <mat-card>
-    <mat-card-title>
-      Stroked Buttons
-    </mat-card-title>
-    <div class="example-button-row">
-      <button mat-stroked-button>Basic</button>
-      <button mat-stroked-button color="primary">Primary</button>
-      <button mat-stroked-button color="accent">Accent</button>
-      <button mat-stroked-button color="warn">Warn</button>
-      <button mat-stroked-button disabled>Disabled</button>
-      <a mat-stroked-button routerLink=".">Link</a>
-    </div>
-  </mat-card>
+	<mat-card>
+		<mat-card-title>
+			Stroked Buttons
+		</mat-card-title>
+		<div class="example-button-row">
+			<button mat-stroked-button>Basic</button>
+			<button mat-stroked-button color="primary">Primary</button>
+			<button mat-stroked-button color="accent">Accent</button>
+			<button mat-stroked-button color="warn">Warn</button>
+			<button mat-stroked-button disabled>Disabled</button>
+			<a mat-stroked-button routerLink=".">Link</a>
+		</div>
+	</mat-card>
 
-  <mat-card>
-    <mat-card-title>
-      Flat Buttons
-    </mat-card-title>
-    <div class="example-button-row">
-      <button mat-flat-button>Basic</button>
-      <button mat-flat-button color="primary">Primary</button>
-      <button mat-flat-button color="accent">Accent</button>
-      <button mat-flat-button color="warn">Warn</button>
-      <button mat-flat-button disabled>Disabled</button>
-      <a mat-flat-button routerLink=".">Link</a>
-    </div>
-  </mat-card>
+	<mat-card>
+		<mat-card-title>
+			Flat Buttons
+		</mat-card-title>
+		<div class="example-button-row">
+			<button mat-flat-button>Basic</button>
+			<button mat-flat-button color="primary">Primary</button>
+			<button mat-flat-button color="accent">Accent</button>
+			<button mat-flat-button color="warn">Warn</button>
+			<button mat-flat-button disabled>Disabled</button>
+			<a mat-flat-button routerLink=".">Link</a>
+		</div>
+	</mat-card>
 
-  <mat-card>
-    <mat-card-title>
-      Icon Buttons
-    </mat-card-title>
-    <div class="example-button-row">
-      <button
-        mat-icon-button
-        aria-label="Example icon-button with a heart icon"
-      >
-        <mat-icon>favorite</mat-icon>
-      </button>
-      <button
-        mat-icon-button
-        color="primary"
-        aria-label="Example icon-button with a heart icon"
-      >
-        <mat-icon>favorite</mat-icon>
-      </button>
-      <button
-        mat-icon-button
-        color="accent"
-        aria-label="Example icon-button with a heart icon"
-      >
-        <mat-icon>favorite</mat-icon>
-      </button>
-      <button
-        mat-icon-button
-        color="warn"
-        aria-label="Example icon-button with a heart icon"
-      >
-        <mat-icon>favorite</mat-icon>
-      </button>
-      <button
-        mat-icon-button
-        disabled
-        aria-label="Example icon-button with a heart icon"
-      >
-        <mat-icon>favorite</mat-icon>
-      </button>
-    </div>
-  </mat-card>
+	<mat-card>
+		<mat-card-title>
+			Icon Buttons
+		</mat-card-title>
+		<div class="example-button-row">
+			<button mat-icon-button aria-label="Example icon-button with a heart icon">
+				<mat-icon>favorite</mat-icon>
+			</button>
+			<button mat-icon-button color="primary" aria-label="Example icon-button with a heart icon">
+				<mat-icon>favorite</mat-icon>
+			</button>
+			<button mat-icon-button color="accent" aria-label="Example icon-button with a heart icon">
+				<mat-icon>favorite</mat-icon>
+			</button>
+			<button mat-icon-button color="warn" aria-label="Example icon-button with a heart icon">
+				<mat-icon>favorite</mat-icon>
+			</button>
+			<button mat-icon-button disabled aria-label="Example icon-button with a heart icon">
+				<mat-icon>favorite</mat-icon>
+			</button>
+		</div>
+	</mat-card>
 
-  <mat-card>
-    <mat-card-title>
-      Fab Buttons
-    </mat-card-title>
-    <div class="example-button-row">
-      <button mat-fab>Basic</button>
-      <button mat-fab color="primary">Primary</button>
-      <button mat-fab color="accent">Accent</button>
-      <button mat-fab color="warn">Warn</button>
-      <button mat-fab disabled>Disabled</button>
-      <button mat-fab aria-label="Example icon-button with a heart icon">
-        <mat-icon>favorite</mat-icon>
-      </button>
-      <a mat-fab routerLink=".">Link</a>
-    </div>
-  </mat-card>
+	<mat-card>
+		<mat-card-title>
+			Fab Buttons
+		</mat-card-title>
+		<div class="example-button-row">
+			<button mat-fab>Basic</button>
+			<button mat-fab color="primary">Primary</button>
+			<button mat-fab color="accent">Accent</button>
+			<button mat-fab color="warn">Warn</button>
+			<button mat-fab disabled>Disabled</button>
+			<button mat-fab aria-label="Example icon-button with a heart icon">
+				<mat-icon>favorite</mat-icon>
+			</button>
+			<a mat-fab routerLink=".">Link</a>
+		</div>
+	</mat-card>
 
-  <mat-card>
-    <mat-card-title>
-      Mini Fab Buttons
-    </mat-card-title>
-    <div class="example-button-row">
-      <button mat-mini-fab>Basic</button>
-      <button mat-mini-fab color="primary">Primary</button>
-      <button mat-mini-fab color="accent">Accent</button>
-      <button mat-mini-fab color="warn">Warn</button>
-      <button mat-mini-fab disabled>Disabled</button>
-      <button mat-mini-fab aria-label="Example icon-button with a heart icon">
-        <mat-icon>favorite</mat-icon>
-      </button>
-      <a mat-mini-fab routerLink=".">Link</a>
-    </div>
-  </mat-card>
+	<mat-card>
+		<mat-card-title>
+			Mini Fab Buttons
+		</mat-card-title>
+		<div class="example-button-row">
+			<button mat-mini-fab>Basic</button>
+			<button mat-mini-fab color="primary">Primary</button>
+			<button mat-mini-fab color="accent">Accent</button>
+			<button mat-mini-fab color="warn">Warn</button>
+			<button mat-mini-fab disabled>Disabled</button>
+			<button mat-mini-fab aria-label="Example icon-button with a heart icon">
+				<mat-icon>favorite</mat-icon>
+			</button>
+			<a mat-mini-fab routerLink=".">Link</a>
+		</div>
+	</mat-card>
 </form>
