@@ -1,24 +1,39 @@
 mat-form-field,
 label {
-  display: block;
+	display: block;
 }
 
 label + h2 {
-  margin-top: 1em;
+	margin-top: 1em;
 }
 
 mat-progress-bar {
-  margin: 0.5em 0;
+	margin: 0.5em 0;
 }
 
 h2 mat-radio-group {
-  font-size: 1rem;
+	font-size: 1rem;
 
-  mat-radio-button {
-    margin-right: 1em;
-  }
+	mat-radio-button {
+		margin-right: 1em;
+	}
 }
 
 mat-card {
-  margin-bottom: 1em;
+	margin-bottom: 1em;
+}
+
+mat-checkbox {
+	clear: both;
+	display: block;
+}
+
+mat-radio-group,
+mat-radio-button {
+	display: block;
+	clear: both;
+}
+
+mat-radio-group {
+	margin-bottom: 1em;
 }

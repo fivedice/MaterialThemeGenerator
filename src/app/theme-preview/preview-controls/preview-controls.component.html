@@ -3,7 +3,7 @@
 		<mat-card-title>Order Form</mat-card-title>
 		<mat-card-content>
 			<label>Slider <mat-slider formControlName="quantity" [min]="1" [max]="20"></mat-slider></label>
-			<label>Checkbox <mat-checkbox formControlName="large"></mat-checkbox></label>
+			<mat-checkbox formControlName="large" labelPosition="before">Checkbox</mat-checkbox>
 			<label
 				>Options:
 				<mat-chip-list>
@@ -76,114 +76,103 @@
 
 	<mat-card>
 		<mat-card-title>
-			Basic Buttons
+			Buttons
 		</mat-card-title>
-		<div class="example-button-row">
-			<button mat-button>Basic</button>
-			<button mat-button color="primary">Primary</button>
-			<button mat-button color="accent">Accent</button>
-			<button mat-button color="warn">Warn</button>
-			<button mat-button disabled>Disabled</button>
-			<a mat-button routerLink=".">Link</a>
-		</div>
+		<app-preview-buttons></app-preview-buttons>
 	</mat-card>
 
 	<mat-card>
 		<mat-card-title>
-			Raised Buttons
+			Sliders
 		</mat-card-title>
-		<div class="example-button-row">
-			<button mat-raised-button>Basic</button>
-			<button mat-raised-button color="primary">Primary</button>
-			<button mat-raised-button color="accent">Accent</button>
-			<button mat-raised-button color="warn">Warn</button>
-			<button mat-raised-button disabled>Disabled</button>
-			<a mat-raised-button routerLink=".">Link</a>
-		</div>
+
+		<label>Primary <mat-slider color="primary" value="10" [min]="1" [max]="20"></mat-slider></label>
+		<label>Accent <mat-slider color="accent" value="10" [min]="1" [max]="20"></mat-slider></label>
+		<label>Warn <mat-slider color="warn" value="10" [min]="1" [max]="20"></mat-slider></label>
 	</mat-card>
 
 	<mat-card>
 		<mat-card-title>
-			Stroked Buttons
+			Checkboxes
 		</mat-card-title>
-		<div class="example-button-row">
-			<button mat-stroked-button>Basic</button>
-			<button mat-stroked-button color="primary">Primary</button>
-			<button mat-stroked-button color="accent">Accent</button>
-			<button mat-stroked-button color="warn">Warn</button>
-			<button mat-stroked-button disabled>Disabled</button>
-			<a mat-stroked-button routerLink=".">Link</a>
-		</div>
+
+		<mat-checkbox color="primary" labelPosition="after">Primary</mat-checkbox>
+		<mat-checkbox color="accent" labelPosition="after">Accent</mat-checkbox>
+		<mat-checkbox color="warn" labelPosition="after">Warn</mat-checkbox>
+
+		<mat-checkbox color="primary" checked="true" labelPosition="before">Primary</mat-checkbox>
+		<mat-checkbox color="accent" checked="true" labelPosition="before">Accent</mat-checkbox>
+		<mat-checkbox color="warn" checked="true" labelPosition="before">Warn</mat-checkbox>
 	</mat-card>
 
 	<mat-card>
 		<mat-card-title>
-			Flat Buttons
+			Chips
 		</mat-card-title>
-		<div class="example-button-row">
-			<button mat-flat-button>Basic</button>
-			<button mat-flat-button color="primary">Primary</button>
-			<button mat-flat-button color="accent">Accent</button>
-			<button mat-flat-button color="warn">Warn</button>
-			<button mat-flat-button disabled>Disabled</button>
-			<a mat-flat-button routerLink=".">Link</a>
-		</div>
+
+		<mat-card>
+			<mat-card-title>
+				Primary
+			</mat-card-title>
+			<mat-chip-list>
+				<mat-chip color="primary" selected>Chip 1</mat-chip>
+				<mat-chip color="primary">Chip 2</mat-chip>
+				<mat-chip color="primary">Chip 3</mat-chip>
+			</mat-chip-list>
+		</mat-card>
+
+		<mat-card>
+			<mat-card-title>
+				Accent
+			</mat-card-title>
+			<mat-chip-list color="accent">
+				<mat-chip color="accent">Chip 1</mat-chip>
+				<mat-chip color="accent" selected>Chip 2</mat-chip>
+				<mat-chip color="accent">Chip 3</mat-chip>
+			</mat-chip-list>
+		</mat-card>
+
+		<mat-card>
+			<mat-card-title>
+				Warn
+			</mat-card-title>
+			<mat-chip-list color="warn">
+				<mat-chip color="warn">Chip 1</mat-chip>
+				<mat-chip color="warn">Chip 2</mat-chip>
+				<mat-chip color="warn" selected>Chip 3</mat-chip>
+			</mat-chip-list>
+		</mat-card>
 	</mat-card>
 
 	<mat-card>
 		<mat-card-title>
-			Icon Buttons
+			Radios
 		</mat-card-title>
-		<div class="example-button-row">
-			<button mat-icon-button aria-label="Example icon-button with a heart icon">
-				<mat-icon>favorite</mat-icon>
-			</button>
-			<button mat-icon-button color="primary" aria-label="Example icon-button with a heart icon">
-				<mat-icon>favorite</mat-icon>
-			</button>
-			<button mat-icon-button color="accent" aria-label="Example icon-button with a heart icon">
-				<mat-icon>favorite</mat-icon>
-			</button>
-			<button mat-icon-button color="warn" aria-label="Example icon-button with a heart icon">
-				<mat-icon>favorite</mat-icon>
-			</button>
-			<button mat-icon-button disabled aria-label="Example icon-button with a heart icon">
-				<mat-icon>favorite</mat-icon>
-			</button>
-		</div>
+		<mat-card-content>
+			There isn't a way in template to change the colors.
+			<mat-radio-group name="primary" value="1">
+				<mat-radio-button value="1">Primary 1</mat-radio-button>
+				<mat-radio-button value="2">Primary 2</mat-radio-button>
+				<mat-radio-button value="3">Primary 3</mat-radio-button>
+			</mat-radio-group>
+		</mat-card-content>
 	</mat-card>
 
 	<mat-card>
 		<mat-card-title>
-			Fab Buttons
+			Progress Bar
 		</mat-card-title>
-		<div class="example-button-row">
-			<button mat-fab>Basic</button>
-			<button mat-fab color="primary">Primary</button>
-			<button mat-fab color="accent">Accent</button>
-			<button mat-fab color="warn">Warn</button>
-			<button mat-fab disabled>Disabled</button>
-			<button mat-fab aria-label="Example icon-button with a heart icon">
-				<mat-icon>favorite</mat-icon>
-			</button>
-			<a mat-fab routerLink=".">Link</a>
-		</div>
+		<mat-progress-bar mode="indeterminate" color="primary"></mat-progress-bar>
+		<mat-progress-bar mode="indeterminate" color="accent"></mat-progress-bar>
+		<mat-progress-bar mode="indeterminate" color="warn"></mat-progress-bar>
 	</mat-card>
 
 	<mat-card>
 		<mat-card-title>
-			Mini Fab Buttons
+			Progress Spinner
 		</mat-card-title>
-		<div class="example-button-row">
-			<button mat-mini-fab>Basic</button>
-			<button mat-mini-fab color="primary">Primary</button>
-			<button mat-mini-fab color="accent">Accent</button>
-			<button mat-mini-fab color="warn">Warn</button>
-			<button mat-mini-fab disabled>Disabled</button>
-			<button mat-mini-fab aria-label="Example icon-button with a heart icon">
-				<mat-icon>favorite</mat-icon>
-			</button>
-			<a mat-mini-fab routerLink=".">Link</a>
-		</div>
+		<mat-progress-spinner mode="indeterminate" color="primary"></mat-progress-spinner>
+		<mat-progress-spinner mode="indeterminate" color="accent"></mat-progress-spinner>
+		<mat-progress-spinner mode="indeterminate" color="warn"></mat-progress-spinner>
 	</mat-card>
 </form>

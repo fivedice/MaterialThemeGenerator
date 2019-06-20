@@ -114,8 +114,8 @@ export class PalettePickerComponent implements OnInit {
 
 	ngOnInit() {
 		this.form.patchValue({
-			primary: { main: '#059fad' },
-			accent: { main: '#ff5d2d' },
+			primary: { main: '#2d3047' },
+			accent: { main: '#059fad' },
 			warn: { main: '#c83901' },
 			lightText: '#2d3047',
 			lightBackground: '#fafafa',
