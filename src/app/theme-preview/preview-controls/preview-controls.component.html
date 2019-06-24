@@ -176,4 +176,23 @@
 		<mat-progress-spinner mode="indeterminate" color="accent"></mat-progress-spinner>
 		<mat-progress-spinner mode="indeterminate" color="warn"></mat-progress-spinner>
 	</mat-card>
+
+	<mat-card>
+		<mat-card-title>
+			Datepicker
+		</mat-card-title>
+		<mat-card-content>
+			<mat-form-field>
+				<input matInput [matDatepicker]="primarypicker" placeholder="Primary" />
+				<mat-datepicker-toggle matSuffix [for]="primarypicker"></mat-datepicker-toggle>
+				<mat-datepicker #primarypicker></mat-datepicker>
+			</mat-form-field>
+
+			<mat-form-field color="accent">
+				<input matInput [matDatepicker]="accentpicker" placeholder="Accent" />
+				<mat-datepicker-toggle matSuffix [for]="accentpicker"></mat-datepicker-toggle>
+				<mat-datepicker #accentpicker color="accent"></mat-datepicker>
+			</mat-form-field>
+		</mat-card-content>
+	</mat-card>
 </form>
