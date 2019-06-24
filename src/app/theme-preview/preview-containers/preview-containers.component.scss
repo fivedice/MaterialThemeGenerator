@@ -1,6 +1,5 @@
 :host {
 	display: grid;
-	grid-template-areas: 'table dialog';
 	grid-column-gap: 20px;
 	grid-row-gap: 20px;
 	grid-template-columns: 1fr 500px;
@@ -8,11 +7,7 @@
 }
 
 table {
-	grid-area: table;
-}
-
-.dialog {
-	grid-area: dialog;
+	grid-column: 1;
 }
 
 .col1 {
@@ -24,7 +19,12 @@ table {
 
 .elevation {
 	grid-column: 2;
+	grid-row-start: 1;
+	grid-row-end: 3;
 	mat-card {
 		margin-bottom: 1em;
+	}
+	.elevation-cycle {
+		margin-bottom: 4em;
 	}
 }

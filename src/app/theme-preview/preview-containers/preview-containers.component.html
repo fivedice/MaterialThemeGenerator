@@ -47,8 +47,100 @@
 	<tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="selection.toggle(row)"></tr>
 </table>
 
-<div class="dialog"></div>
+<!-- ELEVATION CARDS -->
+<div class="elevation">
+	<mat-card
+		class="elevation-cycle"
+		[ngClass]="{
+			'mat-elevation-z0': currentElevation === 0,
+			'mat-elevation-z1': currentElevation === 1,
+			'mat-elevation-z2': currentElevation === 2,
+			'mat-elevation-z3': currentElevation === 3,
+			'mat-elevation-z4': currentElevation === 4,
+			'mat-elevation-z5': currentElevation === 5,
+			'mat-elevation-z6': currentElevation === 6,
+			'mat-elevation-z7': currentElevation === 7,
+			'mat-elevation-z8': currentElevation === 8,
+			'mat-elevation-z9': currentElevation === 9,
+			'mat-elevation-z10': currentElevation === 10,
+			'mat-elevation-z11': currentElevation === 11,
+			'mat-elevation-z12': currentElevation === 12,
+			'mat-elevation-z13': currentElevation === 13,
+			'mat-elevation-z14': currentElevation === 14,
+			'mat-elevation-z15': currentElevation === 15,
+			'mat-elevation-z16': currentElevation === 16,
+			'mat-elevation-z17': currentElevation === 17,
+			'mat-elevation-z18': currentElevation === 18,
+			'mat-elevation-z19': currentElevation === 19,
+			'mat-elevation-z20': currentElevation === 20,
+			'mat-elevation-z21': currentElevation === 21,
+			'mat-elevation-z22': currentElevation === 22,
+			'mat-elevation-z23': currentElevation === 23,
+			'mat-elevation-z24': currentElevation === 24
+		}"
+	>
+		<mat-card-title>Elevation {{ currentElevation }}</mat-card-title>
+		<mat-card-content>This card will cycle through all elevations.</mat-card-content>
+	</mat-card>
 
+	<mat-card class="mat-elevation-z0">
+		<mat-card-title>Elevation 0</mat-card-title>
+	</mat-card>
+
+	<mat-card class="mat-elevation-z1">
+		<mat-card-title>Elevation 1</mat-card-title>
+	</mat-card>
+
+	<mat-card class="mat-elevation-z2">
+		<mat-card-title>Elevation 2</mat-card-title>
+	</mat-card>
+
+	<mat-card class="mat-elevation-z3">
+		<mat-card-title>Elevation 3</mat-card-title>
+	</mat-card>
+
+	<mat-card class="mat-elevation-z4">
+		<mat-card-title>Elevation 4</mat-card-title>
+	</mat-card>
+
+	<mat-card class="mat-elevation-z5">
+		<mat-card-title>Elevation 5</mat-card-title>
+	</mat-card>
+
+	<mat-card class="mat-elevation-z6">
+		<mat-card-title>Elevation 6</mat-card-title>
+	</mat-card>
+
+	<mat-card class="mat-elevation-z7">
+		<mat-card-title>Elevation 7</mat-card-title>
+	</mat-card>
+
+	<mat-card class="mat-elevation-z8">
+		<mat-card-title>Elevation 8</mat-card-title>
+	</mat-card>
+
+	<mat-card class="mat-elevation-z9">
+		<mat-card-title>Elevation 9</mat-card-title>
+	</mat-card>
+
+	<mat-card class="mat-elevation-z10">
+		<mat-card-title>Elevation 10</mat-card-title>
+	</mat-card>
+
+	<mat-card class="mat-elevation-z15">
+		<mat-card-title>Elevation 15</mat-card-title>
+	</mat-card>
+
+	<mat-card class="mat-elevation-z20">
+		<mat-card-title>Elevation 20</mat-card-title>
+	</mat-card>
+
+	<mat-card class="mat-elevation-z24">
+		<mat-card-title>Elevation 24</mat-card-title>
+	</mat-card>
+</div>
+
+<!-- Cards -->
 <div class="col1">
 	<mat-card>
 		<mat-card-title>Card - Best Practices</mat-card-title>
@@ -168,64 +260,5 @@
 			<img mat-card-image src="../../../assets/logo.png" />
 			Content beneath the image.
 		</mat-card-content>
-	</mat-card>
-</div>
-
-<!-- ELEVATION CARDS -->
-<div class="elevation">
-	<mat-card class="mat-elevation-z0">
-		<mat-card-title>Elevation 0</mat-card-title>
-	</mat-card>
-
-	<mat-card class="mat-elevation-z1">
-		<mat-card-title>Elevation 1</mat-card-title>
-	</mat-card>
-
-	<mat-card class="mat-elevation-z2">
-		<mat-card-title>Elevation 2</mat-card-title>
-	</mat-card>
-
-	<mat-card class="mat-elevation-z3">
-		<mat-card-title>Elevation 3</mat-card-title>
-	</mat-card>
-
-	<mat-card class="mat-elevation-z4">
-		<mat-card-title>Elevation 4</mat-card-title>
-	</mat-card>
-
-	<mat-card class="mat-elevation-z5">
-		<mat-card-title>Elevation 5</mat-card-title>
-	</mat-card>
-
-	<mat-card class="mat-elevation-z6">
-		<mat-card-title>Elevation 6</mat-card-title>
-	</mat-card>
-
-	<mat-card class="mat-elevation-z7">
-		<mat-card-title>Elevation 7</mat-card-title>
-	</mat-card>
-
-	<mat-card class="mat-elevation-z8">
-		<mat-card-title>Elevation 8</mat-card-title>
-	</mat-card>
-
-	<mat-card class="mat-elevation-z9">
-		<mat-card-title>Elevation 9</mat-card-title>
-	</mat-card>
-
-	<mat-card class="mat-elevation-z10">
-		<mat-card-title>Elevation 10</mat-card-title>
-	</mat-card>
-
-	<mat-card class="mat-elevation-z15">
-		<mat-card-title>Elevation 15</mat-card-title>
-	</mat-card>
-
-	<mat-card class="mat-elevation-z20">
-		<mat-card-title>Elevation 20</mat-card-title>
-	</mat-card>
-
-	<mat-card class="mat-elevation-z24">
-		<mat-card-title>Elevation 24</mat-card-title>
 	</mat-card>
 </div>
