@@ -41,7 +41,7 @@ export class PreviewContainersComponent implements OnInit, OnDestroy {
 	}
 
 	ngOnDestroy() {
-		this.interval.clear();
+		clearInterval(this.interval);
 	}
 
 	/** Whether the number of selected elements matches the total number of rows. */
