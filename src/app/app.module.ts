@@ -59,6 +59,7 @@ import { ColorPickerComponent } from './palette-picker/color-picker/color-picker
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { GoogleFontItemComponent } from './google-font-selector/google-font-item/google-font-item.component';
 import { PreviewButtonsComponent } from './theme-preview/preview-buttons/preview-buttons.component';
+import { PreviewTabsComponent } from './theme-preview/preview-tabs/preview-tabs.component';
 
 @NgModule({
 	declarations: [
@@ -78,7 +79,8 @@ import { PreviewButtonsComponent } from './theme-preview/preview-buttons/preview
 		SubPalettePickerComponent,
 		ColorPickerComponent,
 		GoogleFontItemComponent,
-		PreviewButtonsComponent
+		PreviewButtonsComponent,
+		PreviewTabsComponent
 	],
 	imports: [
 		HttpClientModule,
