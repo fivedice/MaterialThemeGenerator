@@ -1,7 +1,7 @@
 export interface FontSelection {
 	target: string;
 	family: string;
-	variant: 'light' | 'regular' | 'medium';
+	variant: 'light' | 'regular' | 'medium' | 'bold';
 	size: number;
 	lineHeight?: number;
 	capitalized: boolean;
@@ -28,7 +28,7 @@ export const DEFAULT_FONTS: { [key: string]: FontSelection } = {
 		variant: 'light',
 		size: 112,
 		lineHeight: 112,
-		spacing: -1.5,
+		spacing: 0,
 		capitalized: false
 	},
 	'display-3': {
@@ -37,7 +37,7 @@ export const DEFAULT_FONTS: { [key: string]: FontSelection } = {
 		variant: 'regular',
 		size: 56,
 		lineHeight: 56,
-		spacing: -0.5,
+		spacing: 0,
 		capitalized: false
 	},
 	'display-2': {
@@ -55,7 +55,7 @@ export const DEFAULT_FONTS: { [key: string]: FontSelection } = {
 		variant: 'regular',
 		size: 34,
 		lineHeight: 40,
-		spacing: 0.25,
+		spacing: 0,
 		capitalized: false
 	},
 	headline: {
@@ -73,7 +73,7 @@ export const DEFAULT_FONTS: { [key: string]: FontSelection } = {
 		variant: 'medium',
 		size: 20,
 		lineHeight: 32,
-		spacing: 0.15,
+		spacing: 0,
 		capitalized: false
 	},
 	'subheading-2': {
@@ -82,7 +82,7 @@ export const DEFAULT_FONTS: { [key: string]: FontSelection } = {
 		variant: 'regular',
 		size: 16,
 		lineHeight: 28,
-		spacing: 0.15,
+		spacing: 0,
 		capitalized: false
 	},
 	'subheading-1': {
@@ -91,7 +91,7 @@ export const DEFAULT_FONTS: { [key: string]: FontSelection } = {
 		variant: 'medium',
 		size: 15,
 		lineHeight: 24,
-		spacing: 0.1,
+		spacing: 0,
 		capitalized: false
 	},
 	'body-2': {
@@ -100,7 +100,7 @@ export const DEFAULT_FONTS: { [key: string]: FontSelection } = {
 		variant: 'medium',
 		size: 14,
 		lineHeight: 24,
-		spacing: 0.25,
+		spacing: 0,
 		capitalized: false
 	},
 	'body-1': {
@@ -109,7 +109,7 @@ export const DEFAULT_FONTS: { [key: string]: FontSelection } = {
 		variant: 'regular',
 		size: 14,
 		lineHeight: 20,
-		spacing: 0.25,
+		spacing: 0,
 		capitalized: false
 	},
 	button: {
@@ -118,7 +118,7 @@ export const DEFAULT_FONTS: { [key: string]: FontSelection } = {
 		variant: 'medium',
 		size: 14,
 		lineHeight: 14,
-		spacing: 1.25,
+		spacing: 0,
 		capitalized: true
 	},
 	caption: {
@@ -127,7 +127,7 @@ export const DEFAULT_FONTS: { [key: string]: FontSelection } = {
 		variant: 'regular',
 		size: 12,
 		lineHeight: 20,
-		spacing: 0.4,
+		spacing: 0,
 		capitalized: false
 	},
 	input: {
@@ -136,7 +136,7 @@ export const DEFAULT_FONTS: { [key: string]: FontSelection } = {
 		variant: 'regular',
 		size: undefined,
 		lineHeight: 1.125,
-		spacing: 1.25,
+		spacing: 0,
 		capitalized: true
 	}
 };

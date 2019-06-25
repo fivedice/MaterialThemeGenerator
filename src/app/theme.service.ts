@@ -9,193 +9,199 @@ import { map, tap } from 'rxjs/operators';
 
 type RGBA = tinycolor.ColorFormats.RGBA;
 export interface MaterialPalette {
-  [key: string]: {
-    key: string,
-    hex: string,
-    isLight: boolean
-  };
+	[key: string]: {
+		key: string;
+		hex: string;
+		isLight: boolean;
+	};
 }
 
 export interface SubPalette {
-  main: string;
-  lighter: string;
-  darker: string;
+	main: string;
+	lighter: string;
+	darker: string;
 }
 
 declare var Sass;
 
 export interface Theme {
-  palette: Palette;
-  fonts: FontSelection[];
-  icons: IconSelection;
-  lightness: boolean;
+	palette: Palette;
+	fonts: FontSelection[];
+	icons: IconSelection;
+	lightness: boolean;
 }
 
 @Injectable({
-  providedIn: 'root'
+	providedIn: 'root'
 })
 export class ThemeService {
+	static MIX_AMOUNTS_PRIMARY = {
+		50: [true, 12],
+		100: [true, 30],
+		200: [true, 50],
+		300: [true, 70],
+		400: [true, 85],
+		500: [true, 100],
+		600: [false, 87],
+		700: [false, 70],
+		800: [false, 54],
+		900: [false, 25]
+	};
 
-  static MIX_AMOUNTS_PRIMARY = {
-    50: [true, 12],
-    100: [true, 30],
-    200: [true, 50],
-    300: [true, 70],
-    400: [true, 85],
-    500: [true, 100],
-    600: [false, 87],
-    700: [false, 70],
-    800: [false, 54],
-    900: [false, 25]
-  };
+	static MIX_AMOUNTS_SECONDARY = {
+		A100: [15, 80, 65],
+		A200: [15, 80, 55],
+		A400: [15, 100, 45],
+		A700: [15, 100, 40]
+	};
 
-  static MIX_AMOUNTS_SECONDARY = {
-    A100: [15, 80, 65],
-    A200: [15, 80, 55],
-    A400: [15, 100, 45],
-    A700: [15, 100, 40]
-  };
+	_palette: Palette;
+	_fonts: FontSelection[];
+	_icons: IconSelection = 'Filled';
+	_lightness = true;
 
-  _palette: Palette;
-  _fonts: FontSelection[];
-  _icons: IconSelection = 'Filled';
-  _lightness = true;
+	$theme = new ReplaySubject<Theme>();
 
-  $theme = new ReplaySubject<Theme>();
+	$palette = new Subject<Partial<Palette>>();
+	$fonts = new Subject<FontSelection[]>();
+	$icons = new Subject<string>();
+	$lightness = new Subject<boolean>();
+	$themeScss: Promise<void>;
 
-  $palette = new Subject<Partial<Palette>>();
-  $fonts = new Subject<FontSelection[]>();
-  $icons = new Subject<string>();
-  $lightness = new Subject<boolean>();
-  $themeScss: Promise<void>;
+	constructor(private http: HttpClient) {
+		this.$themeScss = this.loadThemingScss();
+	}
 
+	loadThemingScss() {
+		return this.http
+			.get('/assets/_theming.scss', { responseType: 'text' })
+			.pipe(
+				map(x => {
+					return x
+						.replace(/\n/gm, '??')
+						.replace(/\$mat-([^:?]+)\s*:\s*\([? ]*50:[^()]*contrast\s*:\s*\([^)]+\)[ ?]*\);\s*?/g, (all, name) =>
+							name === 'grey' ? all : ''
+						)
+						.replace(/\/\*.*?\*\//g, '')
+						.split(/[?][?]/g)
+						.map(l =>
+							l
+								.replace(/^\s*(\/\/.*)?$/g, '')
+								.replace(/^\$mat-blue-gray\s*:\s*\$mat-blue-grey\s*;\s*/g, '')
+								.replace(/^\s*|\s*$/g, '')
+								.replace(/:\s\s+/g, ': ')
+						)
+						.filter(l => !!l)
+						.join('\n');
+				}),
+				map(txt => Sass.writeFile('~@angular/material/theming', txt))
+			)
+			.toPromise();
+	}
 
-  constructor(private http: HttpClient) {
-    this.$themeScss = this.loadThemingScss();
-  }
+	emit() {
+		this.$theme.next(this.theme);
+	}
 
-  loadThemingScss() {
-    return this.http.get('/assets/_theming.scss', { responseType: 'text' })
-      .pipe(
-        map(x => {
-          return x
-            .replace(/\n/gm, '??')
-            .replace(/\$mat-([^:?]+)\s*:\s*\([? ]*50:[^()]*contrast\s*:\s*\([^)]+\)[ ?]*\);\s*?/g,
-              (all, name) => name === 'grey' ? all : '')
-            .replace(/\/\*.*?\*\//g, '')
-            .split(/[?][?]/g)
-            .map(l => l
-              .replace(/^\s*(\/\/.*)?$/g, '')
-              .replace(/^\$mat-blue-gray\s*:\s*\$mat-blue-grey\s*;\s*/g, '')
-              .replace(/^\s*|\s*$/g, '')
-              .replace(/:\s\s+/g, ': ')
-            )
-            .filter(l => !!l)
-            .join('\n');
-        }),
-        map(txt =>
-          Sass.writeFile('~@angular/material/theming', txt))
-      ).toPromise();
-  }
+	get theme() {
+		return {
+			palette: this._palette,
+			fonts: this._fonts,
+			icons: this._icons,
+			lightness: this._lightness
+		};
+	}
 
-  emit() {
-    this.$theme.next(this.theme);
-  }
+	set palette(pal: Palette) {
+		this._palette = pal;
+		this.emit();
+	}
 
-  get theme() {
-    return {
-      palette: this._palette,
-      fonts: this._fonts,
-      icons: this._icons,
-      lightness: this._lightness
-    };
-  }
+	get palette() {
+		return this._palette;
+	}
 
-  set palette(pal: Palette) {
-    this._palette = pal;
-    this.emit();
-  }
+	set fonts(fonts: FontSelection[]) {
+		this._fonts = fonts;
+		this.emit();
+	}
 
-  get palette() {
-    return this._palette;
-  }
+	get fonts() {
+		return this._fonts;
+	}
 
-  set fonts(fonts: FontSelection[]) {
-    this._fonts = fonts;
-    this.emit();
-  }
+	set icons(icons: IconSelection) {
+		this._icons = icons;
+		this.emit();
+	}
 
-  get fonts() {
-    return this._fonts;
-  }
+	get icons() {
+		return this._icons;
+	}
 
-  set icons(icons: IconSelection) {
-    this._icons = icons;
-    this.emit();
-  }
+	set lightness(light: boolean) {
+		this._lightness = light;
+		this.emit();
+	}
 
-  get icons() {
-    return this._icons;
-  }
+	get lightness() {
+		return this._lightness;
+	}
 
-  set lightness(light: boolean) {
-    this._lightness = light;
-    this.emit();
-  }
+	multiply(rgb1: RGBA, rgb2: RGBA) {
+		rgb1.b = Math.floor((rgb1.b * rgb2.b) / 255);
+		rgb1.g = Math.floor((rgb1.g * rgb2.g) / 255);
+		rgb1.r = Math.floor((rgb1.r * rgb2.r) / 255);
+		return tinycolor('rgb ' + rgb1.r + ' ' + rgb1.g + ' ' + rgb1.b);
+	}
 
-  get lightness() {
-    return this._lightness;
-  }
+	/**
+	 *  Algorithm taken from https://github.com/mbitson/mcg/blob/master/scripts/controllers/ColorGeneratorCtrl.js#L237, (MIT)
+	 */
+	getPalette(color: string): MaterialPalette {
+		const baseLight = tinycolor('#ffffff');
+		const baseDark = this.multiply(tinycolor(color).toRgb(), tinycolor(color).toRgb());
+		const [, , , baseTriad] = tinycolor(color).tetrad();
 
-  multiply(rgb1: RGBA, rgb2: RGBA) {
-    rgb1.b = Math.floor(rgb1.b * rgb2.b / 255);
-    rgb1.g = Math.floor(rgb1.g * rgb2.g / 255);
-    rgb1.r = Math.floor(rgb1.r * rgb2.r / 255);
-    return tinycolor('rgb ' + rgb1.r + ' ' + rgb1.g + ' ' + rgb1.b);
-  }
+		const primary = Object.keys(ThemeService.MIX_AMOUNTS_PRIMARY).map(k => {
+			const [light, amount] = ThemeService.MIX_AMOUNTS_PRIMARY[k];
+			return [k, tinycolor.mix(light ? baseLight : baseDark, tinycolor(color), amount)] as [string, tinycolor.Instance];
+		});
 
-  /**
-   *  Algorithm taken from https://github.com/mbitson/mcg/blob/master/scripts/controllers/ColorGeneratorCtrl.js#L237, (MIT)
-   */
-  getPalette(color: string): MaterialPalette {
-    const baseLight = tinycolor('#ffffff');
-    const baseDark = this.multiply(tinycolor(color).toRgb(), tinycolor(color).toRgb());
-    const [, , , baseTriad] = tinycolor(color).tetrad();
+		const accent = Object.keys(ThemeService.MIX_AMOUNTS_SECONDARY).map(k => {
+			const [amount, sat, light] = ThemeService.MIX_AMOUNTS_SECONDARY[k];
+			return [
+				k,
+				tinycolor
+					.mix(baseDark, baseTriad, amount)
+					.saturate(sat)
+					.lighten(light)
+			] as [string, tinycolor.Instance];
+		});
 
-    const primary = Object.keys(ThemeService.MIX_AMOUNTS_PRIMARY)
-      .map(k => {
-        const [light, amount] = ThemeService.MIX_AMOUNTS_PRIMARY[k];
-        return [k, tinycolor.mix(light ? baseLight : baseDark, tinycolor(color), amount)] as [string, tinycolor.Instance];
-      });
+		return [...primary, ...accent].reduce((acc, [k, c]) => {
+			acc[k] = c.toHexString();
+			return acc;
+		}, {});
+	}
 
-    const accent = Object.keys(ThemeService.MIX_AMOUNTS_SECONDARY)
-      .map(k => {
-        const [amount, sat, light] = ThemeService.MIX_AMOUNTS_SECONDARY[k];
-        return [k, tinycolor.mix(baseDark, baseTriad, amount)
-          .saturate(sat).lighten(light)] as [string, tinycolor.Instance];
-      });
+	fontRule(x: FontSelection) {
+		const weight =
+			x.variant === 'light' ? '300' : x.variant === 'medium' ? '500' : x.variant === 'bold' ? '900' : '400';
 
-    return [...primary, ...accent].reduce((acc, [k, c]) => {
-      acc[k] = c.toHexString();
-      return acc;
-    }, {});
-  }
+		return !!x.size
+			? `mat-typography-level(${x.size}px, ${x.lineHeight}px, ${weight}, '${x.family}', ${(x.spacing / x.size).toFixed(
+					4
+			  )}em)`
+			: `mat-typography-level(inherits, ${x.lineHeight}, ${weight}, '${x.family}', 1.5px)`;
+	}
 
-  fontRule(x: FontSelection) {
-    const weight = x.variant === 'light' ? '300' : (x.variant === 'medium' ? '500' : '400');
+	getTextColor(col: string) {
+		return `$${tinycolor(col).isLight() ? 'dark' : 'light'}-primary-text`;
+	}
 
-    return !!x.size ?
-      `mat-typography-level(${x.size}px, ${x.lineHeight}px, ${weight}, '${x.family}', ${(x.spacing / x.size).toFixed(4)}em)` :
-      `mat-typography-level(inherits, ${x.lineHeight}, ${weight}, '${x.family}', 1.5px)`;
-  }
-
-  getTextColor(col: string) {
-    return `$${tinycolor(col).isLight() ? 'dark' : 'light'}-primary-text`;
-  }
-
-
-  getScssPalette(name: string, p: SubPalette) {
-    return `
+	getScssPalette(name: string, p: SubPalette) {
+		return `
 $mat-${name}: (
   main: ${p.main},
   lighter: ${p.lighter},
@@ -208,12 +214,12 @@ $mat-${name}: (
   )
 );
 $theme-${name}: mat-palette($mat-${name}, main, lighter, darker);`;
-  }
+	}
 
-  getTemplate(theme: Theme) {
-    // tslint:disable:no-trailing-whitespace
-    // tslint:disable:max-line-length
-    const tpl = `/**
+	getTemplate(theme: Theme) {
+		// tslint:disable:no-trailing-whitespace
+		// tslint:disable:max-line-length
+		const tpl = `/**
 * Generated theme by Material Theme Generator
 * https://material-theme-generator.travetto.io
 */
@@ -224,8 +230,9 @@ $theme-${name}: mat-palette($mat-${name}, main, lighter, darker);`;
 
 // Fonts
 ${Array.from(new Set((theme.fonts || []).map(x => x.family.replace(/ /g, '+'))))
-        .map(x => `@import url('https://fonts.googleapis.com/css?family=${x}:300,400,500');`).join('\n')}
-     
+	.map(x => `@import url('https://fonts.googleapis.com/css?family=${x}:300,400,500');`)
+	.join('\n')}
+
 $fontConfig: (
   ${(theme.fonts || []).map(x => `${x.target}: ${this.fontRule(x)}`).join(',\n  ')}
 );
@@ -373,50 +380,50 @@ $altTheme: ${!theme.lightness ? 'mat-light-theme' : 'mat-dark-theme'}($theme-pri
   min-height: 2.5em;
 }
 `;
-    // tslint:enable:no-trailing-whitespace
-    // tslint:enable:max-line-length
-    return tpl;
-  }
+		// tslint:enable:no-trailing-whitespace
+		// tslint:enable:max-line-length
+		return tpl;
+	}
 
-  async compileScssTheme(src: string) {
-    await this.$themeScss;
-    return new Promise<string>((res, rej) =>
-      Sass.compile(src.replace('@include angular-material-theme($altTheme);', ''), v => {
-        if (v.status === 0) {
-          res(v.text);
-        } else {
-          rej(v);
-        }
-      })
-    );
-  }
+	async compileScssTheme(src: string) {
+		await this.$themeScss;
+		return new Promise<string>((res, rej) =>
+			Sass.compile(src.replace('@include angular-material-theme($altTheme);', ''), v => {
+				if (v.status === 0) {
+					res(v.text);
+				} else {
+					rej(v);
+				}
+			})
+		);
+	}
 
-  fromExternal(val: string) {
-    try {
-      const json = JSON.parse(val);
+	fromExternal(val: string) {
+		try {
+			const json = JSON.parse(val);
 
-      this.$lightness.next(json.lightness);
-      this.$icons.next(json.icons);
-      this.$palette.next(json.palette);
-      this.$fonts.next(json.fonts);
-    } catch (e) {
-      console.error('Unable to read', val, e);
-    }
-  }
+			this.$lightness.next(json.lightness);
+			this.$icons.next(json.icons);
+			this.$palette.next(json.palette);
+			this.$fonts.next(json.fonts);
+		} catch (e) {
+			console.error('Unable to read', val, e);
+		}
+	}
 
-  toExternal() {
-    const data = {
-      palette: this.palette,
-      fonts: this.fonts.map(x => {
-        const keys = Object.keys(x).filter(k => k === 'target' || x[k] !== DEFAULT_FONTS[x.target][k]);
-        return keys.reduce((acc, v) => {
-          acc[v] = x[v];
-          return acc;
-        }, {});
-      }),
-      icons: this.icons,
-      lightness: this.lightness
-    };
-    return JSON.stringify(data);
-  }
+	toExternal() {
+		const data = {
+			palette: this.palette,
+			fonts: this.fonts.map(x => {
+				const keys = Object.keys(x).filter(k => k === 'target' || x[k] !== DEFAULT_FONTS[x.target][k]);
+				return keys.reduce((acc, v) => {
+					acc[v] = x[v];
+					return acc;
+				}, {});
+			}),
+			icons: this.icons,
+			lightness: this.lightness
+		};
+		return JSON.stringify(data);
+	}
 }
