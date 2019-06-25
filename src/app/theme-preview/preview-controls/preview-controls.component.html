@@ -85,6 +85,7 @@
 			Sliders
 		</mat-card-title>
 
+		<label>Basic <mat-slider value="10" [min]="1" [max]="20"></mat-slider></label>
 		<label>Primary <mat-slider color="primary" value="10" [min]="1" [max]="20"></mat-slider></label>
 		<label>Accent <mat-slider color="accent" value="10" [min]="1" [max]="20"></mat-slider></label>
 		<label>Warn <mat-slider color="warn" value="10" [min]="1" [max]="20"></mat-slider></label>
@@ -95,10 +96,12 @@
 			Checkboxes
 		</mat-card-title>
 
+		<mat-checkbox labelPosition="after">Basic</mat-checkbox>
 		<mat-checkbox color="primary" labelPosition="after">Primary</mat-checkbox>
 		<mat-checkbox color="accent" labelPosition="after">Accent</mat-checkbox>
 		<mat-checkbox color="warn" labelPosition="after">Warn</mat-checkbox>
 
+		<mat-checkbox checked="true" labelPosition="before">Basic</mat-checkbox>
 		<mat-checkbox color="primary" checked="true" labelPosition="before">Primary</mat-checkbox>
 		<mat-checkbox color="accent" checked="true" labelPosition="before">Accent</mat-checkbox>
 		<mat-checkbox color="warn" checked="true" labelPosition="before">Warn</mat-checkbox>
@@ -108,6 +111,17 @@
 		<mat-card-title>
 			Chips
 		</mat-card-title>
+
+		<mat-card>
+			<mat-card-title>
+				Basic
+			</mat-card-title>
+			<mat-chip-list>
+				<mat-chip selected>Chip 1</mat-chip>
+				<mat-chip>Chip 2</mat-chip>
+				<mat-chip>Chip 3</mat-chip>
+			</mat-chip-list>
+		</mat-card>
 
 		<mat-card>
 			<mat-card-title>
@@ -163,6 +177,12 @@
 		</mat-card-title>
 		<mat-card-content>
 			<mat-form-field>
+				<input matInput [matDatepicker]="basicpicker" placeholder="Basic" />
+				<mat-datepicker-toggle matSuffix [for]="basicpicker"></mat-datepicker-toggle>
+				<mat-datepicker #basicpicker></mat-datepicker>
+			</mat-form-field>
+
+			<mat-form-field color="primary">
 				<input matInput [matDatepicker]="primarypicker" placeholder="Primary" />
 				<mat-datepicker-toggle matSuffix [for]="primarypicker"></mat-datepicker-toggle>
 				<mat-datepicker #primarypicker></mat-datepicker>
@@ -198,6 +218,7 @@
 				<mat-card-title>
 					Progress Bar
 				</mat-card-title>
+				<mat-progress-bar mode="indeterminate"></mat-progress-bar>
 				<mat-progress-bar mode="indeterminate" color="primary"></mat-progress-bar>
 				<mat-progress-bar mode="indeterminate" color="accent"></mat-progress-bar>
 				<mat-progress-bar mode="indeterminate" color="warn"></mat-progress-bar>
@@ -207,6 +228,7 @@
 				<mat-card-title>
 					Progress Spinner
 				</mat-card-title>
+				<mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
 				<mat-progress-spinner mode="indeterminate" color="primary"></mat-progress-spinner>
 				<mat-progress-spinner mode="indeterminate" color="accent"></mat-progress-spinner>
 				<mat-progress-spinner mode="indeterminate" color="warn"></mat-progress-spinner>
